@@ -1,1 +1,1 @@
-web: gunicorn Emissions.app:app
+web: gunicorn habit-trac.app:app
