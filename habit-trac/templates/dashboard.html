@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <title>Welcome!</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="../static/css/style.css">
+    
+    <!-- D3 -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+</head>
+<body>
+    <ul class="nav nav-pills nav-fill">
+        <li class="nav-item">
+          <a class="nav-link " href="#">Habits</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="/dashboard">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/recommendations">Recommendations</a>
+        </li>
+    </ul>
+    <hr>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12"> 
+                <h3>Track your progress here!
+                    <hr>
+                </h3>
+                <button id="yes">yes </button>
+        </div>
+</div>  
+
+    <footer class="page-footer font-small blue">
+        <div class="footer-copyright text-center py-3">© 2020 Copyright:
+          <a> Habit-trac.</a>
+        </div>
+    </footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="{{ url_for('static', filename='js/config.js') }}"></script>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+
+</html>
