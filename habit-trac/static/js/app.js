@@ -26,12 +26,17 @@ function addorremove(event){
         rowadd.append("td").text(habit_name);
         rowadd.append("td").text(habit_priority);
         rowadd.append("td").append("button").id(`delete${window.globalhabitcounter}`).text("Remove");
+
+        
       });
     }).catch(function(error) {
       console.log(error);
-    });
-    
-}}
+    });   
+} 
+  else if( clickedbutton)
+
+
+}
 
 // d3.select("#delete0").on("click",addhabit)
 // function addhabit(event){

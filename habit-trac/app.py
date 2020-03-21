@@ -13,7 +13,7 @@ import pymongo
 app = Flask(__name__, static_url_path='/static')
 
 # Use PyMongo to establish Mongo connection
-conn='mongodb://heroku_0zrl06lj:egmnlm1vtil4nk48igf4gkqipd@ds141043.mlab.com:41043/heroku_0zrl06lj'
+conn='mongodb://heroku_0zrl06lj:egmnlm1vtil4nk48igf4gkqipd@ds141043.mlab.com:41043/heroku_0zrl06lj?retryWrites=false'
 client = pymongo.MongoClient(conn)
 db = client["habit_db"]
 habit = db["habit"]
@@ -53,6 +53,25 @@ def habitadd(userid,newhabit,priority):
     result=habit.find()
     print(result)
     return jsonify(result)
+
+# for the graph on Country page
+@app.route("/api/updatedash")
+def updatedashboard(grabhabitmod):
+    session = Session(engine)
+    results = session.query(Emissions.indicator, Emissions.unit,Emissions.country,Emissions.year,Emissions.value,Emissions.variable).\
+        filter(grabindicator == Emissions.indicator).\
+        filter(grabcountry == Emissions.country).all()
+    return jsonify(dash_data)
+
+# for the World graph on Home page 
+@app.route("/api/updatereco")
+def worldgraph(grabdash):
+    session = Session(engine)
+    results = session.query(Emissions.indicator, Emissions.unit,Emissions.country,Emissions.year,Emissions.value).\
+        filter(grabindicator == Emissions.indicator).\
+        filter("World" == Emissions.country).all()
+    return jsonify(emission_data)
+
 
 if __name__ == "__main__":
     app.run()
