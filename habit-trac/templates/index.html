@@ -19,32 +19,53 @@
 <body>
     <ul class="nav nav-pills nav-fill">
         <li class="nav-item">
-          <a class="nav-link active" href="#">Habits</a>
+          <a class="nav-link active" href="index.html">Habits</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/dashboard">Dashboard</a>
+          <a class="nav-link" href="dashboard.html">Dashboard</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/recommendations">Recommendations</a>
+          <a class="nav-link" href="recommendations.html">Recommendations</a>
         </li>
     </ul>
     <hr>
 <div class="container">
-    <div class="row">
-        <div class="col-md-12"> 
-            <h1>Build your Habits!</h1>
-        </div>
+    <div class="row col-md-12">
+        <h1>Build your Habits!</h1>
     </div>  
+</div>
+
+<div class="table-responsive">
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Habit</th>
+        <th scope="col">Priority</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="habit1">
+        <td scope="row">1</td>
+        <td>Track your habits everyday</td>
+        <td>2</td>
+        <td><button id="delete1">Remove</button></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 <div class="container" id="habitcont">
     <div class="row rownum0">
-        <div class="col-md-10"> 
-                <h3>
-                    <input class="form-control" id="habit0" type="text" placeholder="Exercise">
-                </h3>
+        <div class="col-md-7"> 
+          <h3>
+              <input class="form-control" id="habitname" type="text" placeholder="Exercise">
+          </h3>
         </div>
         <div class="col-md-2"> 
-            <button id="delete0">Remove</button>
+          <h3>
+              <input class="form-control" id="habitpriority" type="number" placeholder="Priority">
+          </h3>
         </div>
     </div>
 </div>
@@ -63,7 +84,7 @@
     </footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<script src="../app.js"></script>
+<script src="../static/js/app.js"></script>
 </body>
 
 </html>
