@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<head>
+    <title>
+        Show Progress Here
+    </title>
+
+    <style type="text/css">
+
+
+    
+    </style>
+</head>
+
+
+<body>
+    
+    <!-- 'onchange=' means selector change first and progress bar change after -->
+  
+
+                <select class="progressSelector" onchange="moveProgressBar(value)">
+                    <option value="started" selected>Started</option>
+                    <option value="inProgress">In Progress</option>
+                    <option value="completed">Completed</option>
+                </select>
+                </div>
+            </td>
+            <td>
+                <div class="progress">
+                    <!-- Here is where the bar is  -->
+                </div>
+       
+   
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+	<script src="d3progressbar.js"></script>
+    </body>
+</html>
