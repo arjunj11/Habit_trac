@@ -1,4 +1,19 @@
 
+function loadpage(){
+  var urlhabit = "/api/habitdisplay"
+    d3.json(urlhabit).then(function(response){
+      console.log(response)     // from the API it will get the json response as habit name, habit priority.
+      response.forEach(row => {
+        rowadd=d3.select("tbody").append("tr")
+        rowadd.append("td").text(window.globalhabitcounter);
+        rowadd.append("td").text(row.habit_name);
+        rowadd.append("td").text(row.habit_priority);
+        rowadd.append("td").append("button").text("Remove");
+     });
+})
+}
+loadpage()
+
 var globalhabitcounter=0;
 mydoc = d3.select("html")
 
@@ -9,34 +24,57 @@ function addorremove(event){
   var clickedbutton = d3.event.target.id  // find which button is clicked
   console.log(clickedbutton)
 
+   // putting underscores instead of spaces
+  function spaces2_(habitsentence){
+  words= habitsentence.split(' ')
+  var habit_=''
+  for (i=0;i<words.length;i++){
+      if (i==0){ habit_=habit_ + words[i]}
+      else {habit_=habit_ + '_'+ words[i]}
+  }
+  return(habit_)
+  }
+
   if (clickedbutton == "add"){
 
     var newhabit  = d3.selectAll("#habitname").property("value")
-    var userid  = 1
+    var userid  = 1 // Need to append the code for credentials
     var priority  = d3.selectAll("#habitpriority").property("value")
-
+    
+    newhabit2= spaces2_(newhabit)
     window.globalhabitcounter++ //counting the number of habits
-    var urlhabit = "/api/habitadd/" + userid +"/"+ newhabit +"/"+ priority
+    var urlhabit = "/api/habitadd/" + userid +"/"+ newhabit2 +"/"+ priority
     console.log(urlhabit)  
     d3.json(urlhabit).then(function(response){
       console.log(response)     // from the API it will get the json response as habit name, habit priority.
-      response.forEach(([user_id,habit_name,habit_act_date,habit_priority]) => {
-        rowadd=d3.select("tbody").append("tr").classed(`habit${window.globalhabitcounter}`)
+      response.forEach(row => {
+        rowadd=d3.select("tbody").append("tr")
         rowadd.append("td").text(window.globalhabitcounter);
-        rowadd.append("td").text(habit_name);
-        rowadd.append("td").text(habit_priority);
-        rowadd.append("td").append("button").id(`delete${window.globalhabitcounter}`).text("Remove");
-
-        
-      });
-    }).catch(function(error) {
-      console.log(error);
-    });   
-} 
-  else if( clickedbutton)
-
-
+        rowadd.append("td").text(row.habit_name); //.classed(`habit${window.globalhabitcounter}`)
+        rowadd.append("td").text(row.habit_priority);
+        rowadd.append("td").append("button").text("Remove"); //.id(`delete${window.globalhabitcounter}`)
+     });
+});
 }
+else if(clickedbutton.slice(0,6) =="delete"){
+  console.log(clickedbutton.slice(6,7))
+  num=clickedbutton.slice(6,7)
+  var oldhabit  = d3.selectAll(`.habit${num}`).text()
+  var userid  = 1 // Need to append the code for credentials
+  var urlhabitrem = "/api/habitrem/" + userid +"/"+ oldhabit
+  console.log(urlhabitrem)
+  d3.json(urlhabitrem).then(function(response){
+    console.log(response)
+  })
+  // var div = document.getElementById(`habit${num}`);
+  // div.remove()
+    
+}
+}
+//   else if( clickedbutton)
+
+
+// }
 
 // d3.select("#delete0").on("click",addhabit)
 // function addhabit(event){
@@ -75,5 +113,4 @@ function addorremove(event){
 //       dashboard(response)
 //     })
 
-// }
 // }
