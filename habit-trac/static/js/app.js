@@ -42,7 +42,7 @@ d3.json("api/count/habit").then(function(response){
       var priority  = d3.selectAll("#habitpriority").property("value")
       
       newhabit2= spaces2_(newhabit)
-      window.globalhabitcounter++ //counting the number of habits
+      window.globalhabitcounter++ //counting the habit number
       var urlhabit = "/api/habitadd/" + userid +"/"+ newhabit2 +"/"+ priority + "/" + window.globalhabitcounter
       console.log(urlhabit)  
       d3.json(urlhabit).then(function(response){
@@ -57,7 +57,7 @@ d3.json("api/count/habit").then(function(response){
     }
     else if(clickedbutton.slice(0,8) =="habitrem"){
       console.log(clickedbutton)
-      num=clickedbutton.slice(8,9)
+      num=clickedbutton.slice(8)
       var oldhabit  = d3.select(`.habit${num}`).text()
       var userid  = 1 // Need to append the code for credentials
       var oldhabit2= spaces2_(oldhabit)
