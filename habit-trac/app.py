@@ -126,6 +126,14 @@ def habitdashboarddisplay(userid):
             return_list.append(return_dict)
         flag=False
     print(return_list)
+    # now calculating the progress on each habit
+    yescount= 0.0
+    totalcount = 0.0
+    for row in return_list:
+        yescount = mongo.db.habit_dashboard.count_documents({"user_id":userid,"habit_id":row['habit_id'], 'habit_confirm':'Yes'})
+        totalcount = mongo.db.habit_dashboard.count_documents({"user_id":userid,"habit_id":row['habit_id']})
+        row['YesPercentage'] = (yescount * 100) /totalcount
+    print(return_list)
     return jsonify(return_list)
 
 @app.route("/api/updatedashboard/<userid>/<yesorno>/<habitid>")
@@ -136,7 +144,7 @@ def updatedash(userid,yesorno,habitid):
         mongo.db.habit_dashboard.update_one({"user_id":userid,"habit_id":habitid,"date":tme},{"$set":{'habit_confirm':'Yes'}})
     else:
         mongo.db.habit_dashboard.update_one({"user_id":userid,"habit_id":habitid,"date":tme},{"$set":{'habit_confirm':'No'}})
-        
+    
     result = "updated yesorno"
     return jsonify(result)
 
